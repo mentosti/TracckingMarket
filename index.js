@@ -1,22 +1,79 @@
 const puppeteer = require("puppeteer");
 
 (async () => {
-  // Launch a new browser instance
-  const browser = await puppeteer.launch({ headless: false }); // Set to false to see the browser
-  const page = await browser.newPage();
+  const websites = [
+    { url: "https://example.com", type: "siteA", description: "Coop Mart" },
+    { url: "https://example2.com", type: "siteB" },
+    { url: "https://example3.com", type: "siteC" },
+  ];
 
-  // // Navigate to a website
-  // await page.goto("https://example.com", { waitUntil: "load", timeout: 0 });
+  // Site-specific rules
+  const scrapingRules = {
+    siteA: {
+      chooseRegion: {
+        city: "#modal-body div:nth-child(1) select",
+        district: "#modal-body div:nth-child(2) select",
+        ward: "#modal-body div:nth-child(3) select",
+        branch: "#modal-body div:nth-child(4) select",
+        submit: "#modal-body button",
+      },
+      description: 'meta[name="description"]',
+      content: ".main-content p",
+    },
+    siteB: {
+      chooseRegion: ".article-title",
+      description: 'meta[property="og:description"]',
+      content: ".post-body p",
+    },
+    siteC: {
+      chooseRegion: ".header h2",
+      description: 'meta[name="summary"]',
+      content: ".content-section p",
+    },
+  };
 
-  // // Take a screenshot
-  // await page.screenshot({ path: "screenshot.png", fullPage: true });
+  const browser = await puppeteer.launch({ headless: true });
 
-  // console.log("Screenshot taken!");
+  let results = [];
 
-  // // Extract the title of the page
-  // const title = await page.title();
-  // console.log("Page Title:", title);
+  for (let site of websites) {
+    const page = await browser.newPage();
+    console.log(`Scraping: ${site.url}`);
 
-  // // Close the browser
-  // await browser.close();
+    try {
+      await page.goto(site.url, {
+        waitUntil: "domcontentloaded",
+        timeout: 60000,
+      });
+
+      // Extract data based on the site type
+      let data = await scrapePage(page, scrapingRules[site.type]);
+      results.push({ url: site.url, ...data });
+    } catch (error) {
+      console.error(`Error scraping ${site.url}:`, error);
+      results.push({ url: site.url, error: error.message });
+    }
+
+    await page.close();
+  }
+
+  await browser.close();
+
+  console.log("Scraping completed:", results);
 })();
+
+// Function to extract data dynamically based on selectors
+async function scrapePage(page, rules) {
+  return await page.evaluate((rules) => {
+    const getText = (selector) =>
+      document.querySelector(selector)?.innerText || "N/A";
+    const getMetaContent = (selector) =>
+      document.querySelector(selector)?.content || "N/A";
+
+    return {
+      title: getText(rules.title),
+      description: getMetaContent(rules.description),
+      content: getText(rules.content),
+    };
+  }, rules);
+}
