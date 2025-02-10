@@ -1,0 +1,797 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Grading System</title>
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+      type="text/javascript"
+    ></script>
+  </head>
+
+  <body>
+    <div>
+      <table id="updateTable" cellpadding="0" cellspacing="0">
+        <!-- Generate table here -->
+      </table>
+      <style type="text/css">
+        #updateTable tr td,
+        #updateTable tr th {
+          border-top: 1px solid #555;
+          border-left: 1px solid #555;
+        }
+
+        #updateTable tr:last-child td,
+        #updateTable tr:last-child th {
+          border-bottom: 1px solid #555;
+        }
+
+        #updateTable tr td:last-child,
+        #updateTable tr th:last-child {
+          border-right: 1px solid #555;
+        }
+
+        #updateTable tr th {
+          font-weight: normal !important;
+          padding: 2px;
+        }
+
+        #updateTable tr th {
+          min-width: 30px;
+        }
+
+        #updateTable tr td.right {
+          text-align: right;
+          padding: 0px 3px 0px 3px;
+        }
+
+        #updateTable tr td.left {
+          padding: 0px 3px 0px 3px;
+        }
+
+        #updateTable tr td.center {
+          padding: 0px 3px 0px 3px;
+          text-align: center;
+        }
+
+        #updateGrade {
+          display: none;
+        }
+
+        #updateTable a {
+          text-decoration: none;
+        }
+
+        #updateTable tr:nth-child(3n) {
+          background-color: #ffe0e0;
+        }
+
+        #updateTable tr:nth-child(3n + 1) {
+          background-color: #ddffdd;
+        }
+
+        #updateTable tr th {
+          background-color: #ccccff;
+        }
+
+        #updateTable tr.summary {
+          font-weight: bold;
+          background-color: #ccccff;
+        }
+      </style>
+    </div>
+    <br />
+    <button id="updateGrade">Update Grades</button>
+    <div id="content">
+      <i>Last updated: <span id="lastupdated"></span></i>
+      <br />
+      <i><strong></strong></i>
+    </div>
+    <script type="text/javascript">
+      window.setTimeout(function () {
+        window.location.reload(1);
+      }, 360 * 1000);
+
+      $(function () {
+        window.sources = {};
+        function addSources(studentId, problemId, submissionId) {
+          if (!sources[problemId]) {
+            sources[problemId] = {};
+          }
+          sources[problemId][studentId] = submissionId;
+        }
+
+        function parseDateSimple(dateString) {
+          return new Date(dateString.replace(" ", "T"));
+        }
+
+        window.dateTimeToString = function (date) {
+          return new Date(date.getTime() + 6 * 3600 * 1000).toString();
+        };
+
+        Date.prototype.addHours = function (h) {
+          var copiedDate = new Date(this.getTime());
+          copiedDate.setHours(copiedDate.getHours() + h);
+          return copiedDate;
+        };
+
+        var Problem = function (problemId, deadLine) {
+          this.problemId = problemId;
+          this.deadLine = deadLine;
+          this.groups = {};
+          this.statistic = {
+            submission: 0,
+            totalGrade: 0,
+            AC: 0,
+            totalValidGrade: 0,
+            average: function () {
+              return (
+                Math.round(
+                  (this.totalValidGrade == 0
+                    ? 0
+                    : this.totalGrade / this.totalValidGrade) * 1
+                ) / 1
+              );
+            },
+          };
+        };
+
+        Problem.prototype = {
+          extendTime: function (groupId, start, end, rate) {
+            this.groups[groupId] = { start: start, end: end, rate: rate };
+            return this;
+          },
+
+          getRate: function (time, studentGroups) {
+            if (typeof time == "string") {
+              time = parseDateSimple(time);
+            }
+            if (time <= this.deadLine) {
+              return 1;
+            }
+
+            var max = 0;
+            for (var groupName in this.groups) {
+              var group = this.groups[groupName];
+              if (
+                group &&
+                studentGroups[groupName] &&
+                group.start <= time &&
+                time <= group.end &&
+                max < group.rate
+              ) {
+                max = Math.min(1, group.rate);
+              }
+            }
+            return max;
+          },
+
+          addSubmission: function (grade) {
+            this.statistic.submission++;
+            this.statistic.AC += grade == 100 ? 1 : 0;
+          },
+
+          addGrade: function (grade) {
+            this.statistic.totalGrade += grade;
+            this.statistic.totalValidGrade++;
+          },
+
+          getSummaryString: function () {
+            return (
+              this.statistic.average() +
+              "/" +
+              this.statistic.AC +
+              "/" +
+              this.statistic.submission
+            );
+          },
+        };
+
+        var problems = [];
+
+        problems.add = function (problemId, deadLine) {
+          if (typeof deadLine == "string") {
+            deadLine = parseDateSimple(deadLine);
+          }
+
+          var problem = new Problem(problemId, deadLine); // { 'problemId': problemId, 'deadLine': deadLine };
+          problems.push(problem);
+          return problem;
+        };
+
+        var timeOfDay = 24 * 3600 * 1000;
+        var beginOfQuarter = "2024-10-07T00:00:00+07:00";
+        problems.addAll = function (deadLine, problemIds) {
+          if (typeof deadLine == "string") {
+            deadLine = parseDateSimple(deadLine);
+          }
+          $(problemIds).each(function (index, problemId) {
+            var problem = problems.add(problemId, deadLine);
+
+            //lab1
+
+            if (
+              "EICON EIUDEG EIMKF EIFACEBOOK EIUSUFBF EIHCON"
+                .split(" ")
+                .indexOf(problemId) >= 0
+            ) {
+              problem.extendTime(
+                "lab",
+                parseDateSimple(beginOfQuarter),
+                parseDateSimple("2024-10-25T23:59:59+07:00"),
+                1
+              );
+            }
+
+            if (
+              "EIUDFS1 EIUDFS2 EIUBFS1 EIUBFS2 EICONP EICONP1 EIFOLTRE EICONP3"
+                .split(" ")
+                .indexOf(problemId) >= 0
+            ) {
+              problem.extendTime(
+                "lab",
+                parseDateSimple(beginOfQuarter),
+                parseDateSimple("2024-11-01T23:59:59+07:00"),
+                1
+              );
+            }
+
+            if (
+              "EIPEOYMK EIPRF EIFBF EIFBF2 EIBIPARTITE EITRGROUP"
+                .split(" ")
+                .indexOf(problemId) >= 0
+            ) {
+              problem.extendTime(
+                "lab",
+                parseDateSimple(beginOfQuarter),
+                parseDateSimple("2024-11-10T23:59:59+07:00"),
+                1
+              );
+            }
+
+            if (
+              "EICHTTRE EITREHE1 EIUEASPOST EILOCAL2 EILOCAL2 EILOCAL2 EITREORD"
+                .split(" ")
+                .indexOf(problemId) >= 0
+            ) {
+              problem.extendTime(
+                "lab",
+                parseDateSimple(beginOfQuarter),
+                parseDateSimple("2024-11-23T23:59:59+07:00"),
+                1
+              );
+            }
+
+            if (
+              "EIMAXHTR EIMULEMA EIUMLMK2 EIUSEFI2 EIUWBT EIGREENCITY EIMINDISTA EIMINSPAN"
+                .split(" ")
+                .indexOf(problemId) >= 0
+            ) {
+              problem.extendTime(
+                "lab",
+                parseDateSimple(beginOfQuarter),
+                parseDateSimple("2024-12-23T23:59:59+07:00"),
+                1
+              );
+            }
+
+            //problem.extendTime('lose', parseDateSimple('2024-05-29T14:00:00+07:00'), parseDateSimple('2024-05-29T15:59:59+07:00'), 1);
+            problem.extendTime(
+              "extent",
+              parseDateSimple(beginOfQuarter),
+              parseDateSimple("2024-12-23T23:59:59+07:00"),
+              0.8
+            );
+          });
+        };
+
+        //
+        /*
+            // Modify problem, change co-author
+            $('select[name="grown"]').val(3472); setTimeout(function () { $('input[name="Modify"][value="Modify"]').click(); 
+
+}, 200);
+
+            // Change problemset name
+            $('[name$="_category"]').each(function () {
+                $(this).val($(this).val().replace(/eis20_final/, 'dsa_final').replace('eis20_midterm', 'dsa_mid'));
+            });
+
+            $('tr.problemrow td:nth-child(4)').text().split('\n').join(' ')
+            var list = 'EIPAIR EIUGIFT EIUGIFTS EIUAPPEA EIUBIRTH'.split(' ');
+            function addProblem(list, problemSet) {
+                if (list.length == 0) return;
+
+                var problemCode = list.pop().trim();
+                if (problemCode) {
+                    if ($('tr.problemrow td.form:contains("' + problemCode + '")').length == 0) {
+                        var value = $('select[name="new_id"] option:contains("' + problemCode + '")').prop('value').trim();
+                        console.log(value);
+                        $.post('/EIUPROGR/edit/', {
+                            'add_probl': 1,
+                            'form_action': 'modify_addproblem',
+                            'add_id': 3915,
+                            'new_id': value,
+                            'new_startview': '2021-07-19 08:50:00',
+                            'new_start': '2021-07-19 08:55:00',
+                            'new_end': '2035-01-21 08:30:00',
+                            'new_sc_from': '0000-00-00 00:00:00',
+                            'info': '',
+                            'category': problemSet,
+                            'score': 1,
+                        }, function (data) {
+                            console.log(data)
+                        });
+                    }
+
+                }
+                setTimeout(function () { addProblem(list, problemSet); }, 1000);
+            }
+            addProblem(list, 'dsa_02');
+            */
+
+        //list = []; $('a[title="Submit a solution to this problem."]').each(function() {list.push($(this).text().trim());}); list.join(' ')
+
+        // problems.addAll('2000-05-14T23:59:59+07:00', Array.from("EIUWBT EIMINDISTA EIMINSPAN".split(' ')));
+        // problems.addAll('2000-05-14T23:59:59+07:00', Array.from("EIUSEFI2 EIMULEMA EIUMLMK2".split(' ')));
+        // problems.addAll('2000-05-14T23:59:59+07:00', Array.from("EIUEASPOST EITREORD EIKARY EIGREENCITY EILOCAL2 EILOCALA EIMAXHTR".split(' ')));
+
+        problems.addAll(
+          "2000-05-14T23:59:59+07:00",
+          Array.from(
+            "EIMAXHTR EIMULEMA EIUMLMK2 EIUSEFI2 EIUWBT EIGREENCITY EIMINDISTA EIMINSPAN".split(
+              " "
+            )
+          )
+        );
+        problems.addAll(
+          "2000-05-14T23:59:59+07:00",
+          Array.from(
+            "EICHTTRE EITREHE1 EIUEASPOST EILOCAL2 EILOCAL2 EILOCAL2 EITREORD".split(
+              " "
+            )
+          )
+        );
+        problems.addAll(
+          "2000-05-14T23:59:59+07:00",
+          Array.from(
+            "EIPEOYMK EIPRF EIFBF EIFBF2 EIBIPARTITE EITRGROUP".split(" ")
+          )
+        );
+        problems.addAll(
+          "2000-05-12T14:00:00+07:00",
+          Array.from(
+            new Set(
+              "EIUDFS1 EIUDFS2 EIUBFS1 EIUBFS2 EICONP EICONP1 EIFOLTRE EICONP3".split(
+                " "
+              )
+            )
+          )
+        );
+        problems.addAll(
+          "2000-05-12T14:00:00+07:00",
+          Array.from(
+            new Set("EICON EIUDEG EIMKF EIFACEBOOK EIUSUFBF EIHCON".split(" "))
+          )
+        );
+
+        // (ei130094nguyen, "Nguyen Van Nguyen", 1311210094);
+        var Student = function (id, name, code) {
+          this.id = id;
+          this.name = name;
+          this.code = code;
+
+          this.problems = [];
+          this.cheets = [];
+          this.group = {};
+          this.statistic = {
+            submission: 0,
+            totalGrade: 0,
+            AC: 0,
+            average: function () {
+              return (
+                Math.round(
+                  (this.submission == 0
+                    ? 0
+                    : this.totalGrade / this.submission) * 1
+                ) / 1
+              );
+            },
+          };
+
+          this.addCheet = function () {
+            this.cheets = Array.prototype.slice.call(arguments);
+            return this;
+          };
+
+          this.isCheet = function (problemCode) {
+            return this.cheets.indexOf(problemCode) >= 0;
+          };
+
+          this.addGroup = function (groupName) {
+            this.group[groupName] = true;
+            return this;
+          };
+
+          this.isInGroup = function (group) {
+            return this.group[group] || false;
+          };
+        };
+
+        var students = [];
+        students.add = function (id, name, code) {
+          var student = new Student(id, name, code);
+          students.push(student);
+          return student;
+        };
+        students.add("ei23wanhdo", "Đỗ Viết Anh", 2131200028).addGroup("");
+        students.add("eiuanhpham668", "Phạm Việt Anh", 2331200217).addGroup("");
+        students
+          .add("ei23sbinhtran", "Trần Khánh Bình", 2231200127)
+          .addGroup("");
+        students
+          .add("ei24squoccuong", "Trần Quốc Cường", 2231220025)
+          .addGroup("");
+        students
+          .add("eiuduynguyen47", "Nguyễn Đức Duy", 2131200069)
+          .addGroup("");
+        students.add("", "Đỗ Anh Hào", 2231200011).addGroup("");
+        students
+          .add("ei24ahaonguyen", "Nguyễn Quang Hào", 2131200003)
+          .addGroup("");
+        students
+          .add("eiuhoangluong", "Lương Hữu Hoằng", 2031200084)
+          .addGroup("");
+        students
+          .add("ei23shuanguyen", "Nguyễn Xuân Huấn", 2131200077)
+          .addGroup("");
+        students.add("", "Nguyễn Việt Hưng", 2231200033).addGroup("");
+        students
+          .add("eiu_hungpham15", "Phạm Trần Gia Hưng", 2331200153)
+          .addGroup("");
+        students.add("ei23sphuloc", "Đặng Phú Lộc", 2131200008).addGroup("");
+        students
+          .add("ei23slocnguyen", "Nguyễn Lê Tùng Lộc", 2031200051)
+          .addGroup("");
+        students
+          .add("ei23sminhdinh", "Đinh Trần Anh Minh", 2131200039)
+          .addGroup("");
+        students.add("ei22sminhha", "Hà Quang Minh", 1931220012).addGroup("");
+        students
+          .add("ei23wduynam", "Lưu Nguyễn Duy Nam", 2131200040)
+          .addGroup("");
+        students
+          .add("eiuhaingan", "Bùi Nguyễn Hải Ngân", 2231200071)
+          .addGroup("");
+        students
+          .add("eiunghiatran", "Trần Minh Nghĩa", 2231200019)
+          .addGroup("");
+        students
+          .add("ei23snhatng", "Nguyễn Thành Trung Nhật", 2131200088)
+          .addGroup("");
+        students
+          .add("ei23sthaophan", "Phan Đinh Hiếu Thảo", 2131200020)
+          .addGroup("");
+
+        var retest1 = students.map((x) => x.id).filter((x) => x.length > 0);
+
+        // /*
+        $(students).each(function (index, student) {
+          for (var i = 0; i <= 5; i++) {
+            // student.addGroup('delay' + i);
+            // student.addGroup('retest1');
+          }
+
+          if (retest1.indexOf(student.id) >= 0) {
+            student.addGroup("retest1");
+          }
+          student.addGroup("late");
+
+          student.addGroup("lab");
+          student.addGroup("extent");
+        });
+        // */
+
+        var buildTable = function () {
+          $("#updateTable").html("");
+          var theads = [
+            '<tr><th rowspan="1">#</td><th rowspan="1">Code</th><th rowspan="1" style="padding: 0px 75px 0px 75px;">Name</th><th rowspan="1">SpojId</th><th>Grade</th>',
+          ];
+          for (var j = 0; j < problems.length; j++) {
+            var problem = problems[j];
+            theads.push(
+              '<th> <a target="_blank" href="' +
+                "http://www.spoj.com/EIUPROGR/problems/" +
+                problem.problemId +
+                '" title="' +
+                problem.deadLine.addHours(0) +
+                '">' +
+                problem.problemId +
+                "</a></th>"
+            );
+          }
+          theads.push("<th>AC/Sub</th>");
+          theads.push("</tr>");
+          $("#updateTable").html(theads.join(""));
+        };
+
+        var addTableRow = function (student) {
+          var rows = [
+            '<tr><td class="center">' +
+              $("#updateTable tr").length +
+              '</td><td class="center">' +
+              student.code +
+              '</td><td class="left">' +
+              student.name +
+              '</td><td class="center"><a target="_blank" href="http://www.spoj.com/EIUPROGR/users/' +
+              student.id +
+              '">' +
+              student.id +
+              "</a></td>",
+          ];
+
+          $(student.grades).each(function (index, grade) {
+            //rows.push('<td class="right"><a href="http://www.spoj.com/EIUPROGR/files/src/save/' + grade.submissionId + '">' + (grade.score !== null ? grade.score : "") + '</a></td>');
+            rows.push(
+              '<td class="right">' +
+                (grade.score !== null
+                  ? grade.score < 0
+                    ? "<strong>0</strong>"
+                    : grade.score
+                  : "") +
+                "</td>"
+            );
+          });
+          rows.push("</tr>");
+          $("#updateTable").append(rows.join(""));
+        };
+
+        var addSummary = function (grades) {
+          var rows = [
+            '<tr class="summary"><td class="center" colspan="4">Summary (Avg Score / AC / Submission)</td>',
+          ];
+
+          $(grades).each(function (index, grade) {
+            rows.push(
+              '<td class="right">' +
+                (grade.score !== null ? grade.score : "") +
+                "</td>"
+            );
+          });
+          rows.push("</tr>");
+          $("#updateTable").append(rows.join(""));
+        };
+
+        $("#updateGrade").click(function () {
+          buildTable();
+          startUpdate();
+        });
+
+        function startUpdate() {
+          var newData = {};
+          var retestData = {};
+          //$.getJSON('./../NewData.json')
+          //.done(function (updatedData) { newData = updatedData; })
+          //.always(function () {
+          //    $.getJSON('./../Data.ex1.json')
+          //    .done(function (updatedData) { retestData = updatedData })
+          //    .always(function () {
+          $.getJSON("./../Data.json").done(function (data) {
+            onUpdateData(newData, mergeSubmission(data, retestData));
+          });
+          //    });
+          //});
+        }
+
+        function mergeSubmission(data, retestData) {
+          var reUsers = retestData.Users;
+          for (var userId in reUsers) {
+            var user = reUsers[userId];
+            for (var probId in user.Problems) {
+              if (data.Users[userId]) {
+                if (!data.Users[userId].Problems[probId]) {
+                  data.Users[userId].Problems[probId] = user.Problems[probId];
+                } else {
+                  var mergeProblem = data.Users[userId].Problems[probId];
+                  mergeProblem.Submissions = mergeProblem.Submissions.concat(
+                    user.Problems[probId].Submissions
+                  );
+                }
+              }
+            }
+          }
+          return data;
+        }
+
+        function mapSpojId(users, problemsInfo) {
+          $(students).each(function (index, student) {
+            for (var spojId in users) {
+              if (users[spojId].Username == student.id) {
+                student.spojId = spojId;
+              }
+            }
+          });
+
+          $(problems).each(function (index, problem) {
+            for (var spojId in problemsInfo) {
+              if (problemsInfo[spojId].Code === problem.problemId) {
+                problem.spojId = spojId;
+              }
+            }
+          });
+        }
+
+        function getValidSubmission(users, newData, student, problem) {
+          if (
+            (users[student.spojId] &&
+              users[student.spojId].Problems[problem.spojId]) ||
+            (newData &&
+              newData[student.id] &&
+              newData[student.id][problem.problemId])
+          ) {
+            var submissions =
+              (users[student.spojId] &&
+              users[student.spojId].Problems[problem.spojId]
+                ? users[student.spojId].Problems[problem.spojId].Submissions
+                : []) || [];
+            if (
+              newData &&
+              newData[student.id] &&
+              newData[student.id][problem.problemId]
+            ) {
+              var newSubmissions = newData[student.id][problem.problemId];
+              var lastId =
+                submissions.length > 0
+                  ? submissions[submissions.length - 1].Id
+                  : 0;
+              newSubmissions.forEach(function (sub) {
+                if (sub.Id > lastId) {
+                  submissions.push(sub);
+                }
+              });
+            }
+            return submissions;
+          }
+          return null;
+        }
+
+        function onUpdateData(newData, data) {
+          $("#lastupdated").text(parseDateSimple(data.LastUpdated));
+
+          var users = data.Users;
+          var problemsInfo = data.ProblemsInfo;
+
+          mapSpojId(users, problemsInfo);
+          var summary = { student: 0, submission: 0, AC: 0, score: 0 };
+
+          $(students).each(function (index, student) {
+            student.grades = [{ id: null, score: null }];
+            var studentSummary = {
+              submission: 0,
+              AC: 0,
+              grade: 0,
+              hasSubmit: false,
+            };
+
+            $(problems).each(function (index, problem) {
+              var problemGrade = {
+                id: problem.problemId,
+                score: null,
+                submissionId: null,
+              };
+
+              var submissions = getValidSubmission(
+                users,
+                newData,
+                student,
+                problem
+              );
+              if (submissions) {
+                studentSummary.submission += submissions.length;
+                summary.submission += submissions.length;
+
+                $(submissions).each(function (index, submission) {
+                  studentSummary.hasSubmit = true;
+                  var isAccepted = submission.Score === 100 ? 1 : 0;
+                  studentSummary.AC += isAccepted;
+                  summary.AC += isAccepted;
+
+                  var rate = problem.getRate(submission.Time, student.group);
+                  if (rate > 0) {
+                    problem.addSubmission(submission.Score);
+                    if (
+                      problemGrade.score === null ||
+                      problemGrade.score < rate * submission.Score
+                    ) {
+                      problemGrade.score =
+                        Math.round(100 * rate * submission.Score) / 100;
+                      problemGrade.submissionId = submission.Id;
+                      addSources(student.id, problem.problemId, submission.Id);
+                    }
+                  }
+                });
+              }
+
+              if (problemGrade.score !== null) {
+                if (student.isCheet(problem.problemId)) {
+                  problemGrade.score = 0;
+                }
+                problem.addGrade(problemGrade.score);
+              }
+              studentSummary.grade += problemGrade.score || 0;
+              student.grades.push(problemGrade);
+            });
+
+            if (studentSummary.hasSubmit) {
+              student.grades[0].score = Math.min(
+                Math.round((studentSummary.grade * 1.0) / problems.length),
+                100
+              );
+              //Adjust
+              student.grades[0].score = Math.min(
+                Math.round((student.grades[0].score * 30) / 30),
+                100
+              );
+              student.grades.push({
+                id: null,
+                score: studentSummary.AC + "/" + studentSummary.submission,
+              });
+              summary.score += student.grades[0].score;
+              summary.student++;
+            } else {
+              student.grades.push({ id: null, score: null });
+            }
+            const urlParams = new URLSearchParams(window.location.search);
+            const group = urlParams.get("group");
+
+            if (!group || student.isInGroup(group)) {
+              addTableRow(student);
+            }
+          });
+
+          var summaryGrades = [
+            {
+              id: null,
+              score: Math.round(summary.score / (summary.student || 1)),
+            },
+          ];
+          $(problems).each(function (index, problem) {
+            summaryGrades.push({ id: null, score: problem.getSummaryString() });
+          });
+          summaryGrades.push({
+            id: null,
+            score: summary.AC + "/" + summary.submission,
+          });
+          addSummary(summaryGrades);
+        }
+
+        // Debug only
+        window.problems = problems;
+        window.students = students;
+        window.parseDateSimple = parseDateSimple;
+
+        window.setTimeout(function () {
+          buildTable();
+          startUpdate();
+        }, 1000);
+
+        $("#updateTable").on("click", "tr", function (event) {
+          if (!event.ctrlKey) {
+            $("#updateTable tr").css("background-color", "");
+          }
+          $(this).css("background-color", "#ccc");
+        });
+      });
+
+      function getSources(problems) {
+        var newSources = {};
+        problems.forEach(function (problem) {
+          newSources[problem] = sources[problem];
+        });
+        return JSON.stringify(newSources);
+      }
+
+      // getSources(['EICON', 'EIUEAGRP', 'EIUDEG', 'EIHCON']);
+      // getSources(['EIUDFS1', 'EIUDFS2', 'EIUBFS1', 'EIUBFS2', 'EICONP', 'EICONP1']);
+    </script>
+  </body>
+</html>
