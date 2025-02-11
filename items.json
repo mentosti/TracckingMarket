@@ -1,50 +1,42 @@
 {
-  "siteA": {
+  "coop": {
     "meat": {
       "meat": [
         {
           "url": "https://cooponline.vn/groups/bo-va-thit-cac-loai/",
-          "type": "beef",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "beef"
         },
         {
           "url": "https://cooponline.vn/groups/ga/",
-          "type": "chicken",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "chicken"
         },
         {
           "url": "https://cooponline.vn/groups/thit-heo/",
-          "type": "pork",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "pork"
         }
       ],
       "seafood": [
         {
           "url": "https://cooponline.vn/groups/ca/",
-          "type": "fish",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "fish"
         },
         {
           "url": "https://cooponline.vn/groups/hai-san/",
-          "type": "seafood",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "seafood"
         }
       ],
       "egg": [
         {
           "url": "https://cooponline.vn/groups/trung-cut/",
-          "type": "quail egg",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "quail egg"
         },
         {
           "url": "https://cooponline.vn/groups/trung-ga/",
-          "type": "chicken egg",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "chicken egg"
         },
         {
           "url": "https://cooponline.vn/groups/trung-vit/",
-          "type": "duck egg",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "duck egg"
         }
       ]
     },
@@ -52,53 +44,45 @@
       "vegetables": [
         {
           "url": "https://cooponline.vn/groups/cu/",
-          "type": "tuber",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "tuber"
         },
         {
           "url": "https://cooponline.vn/groups/rau-nem-rau-thom/",
-          "type": "herb",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "herb"
         },
         {
           "url": "https://cooponline.vn/groups/rau-xao-nau-canh/",
-          "type": "vegetables",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "vegetables"
         },
         {
           "url": "https://cooponline.vn/groups/xa-lach/",
-          "type": "salad",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "salad"
         }
       ],
       "fruit": [
         {
           "url": "https://cooponline.vn/groups/cam-buoi-quyt/",
-          "type": "orange",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "orange"
         },
         {
           "url": "https://cooponline.vn/groups/dua/",
-          "type": "melon",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "melon"
         },
         {
           "url": "https://cooponline.vn/groups/nho-kiwi/",
-          "type": "grape",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "grape"
         },
         {
           "url": "https://cooponline.vn/groups/tao-le/",
-          "type": "apple",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "apple"
         },
         {
           "url": "https://cooponline.vn/groups/trai-cay-khac/",
-          "type": "others",
-          "next": ".products-list > div:last-child a.btn-cooponline"
+          "type": "others"
         }
       ]
-    }
+    },
+    "next": ".products-list > div:last-child a.btn-cooponline"
   },
   "siteB": {},
   "siteC": {}
