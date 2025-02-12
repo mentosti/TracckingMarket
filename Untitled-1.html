@@ -199,7 +199,7 @@
         };
 
         var timeOfDay = 24 * 3600 * 1000;
-        var beginOfQuarter = "2024-10-07T00:00:00+07:00";
+        var beginOfQuarter = "2024-12-30T00:00:00+07:00";
         problems.addAll = function (deadLine, problemIds) {
           if (typeof deadLine == "string") {
             deadLine = parseDateSimple(deadLine);
@@ -217,70 +217,70 @@
               problem.extendTime(
                 "lab",
                 parseDateSimple(beginOfQuarter),
-                parseDateSimple("2024-10-25T23:59:59+07:00"),
+                parseDateSimple("2025-01-19T23:59:59+07:00"),
                 1
               );
             }
 
             if (
-              "EIUDFS1 EIUDFS2 EIUBFS1 EIUBFS2 EICONP EICONP1 EIFOLTRE EICONP3"
+              "EIUDFS1 EIUDFS2 EIUBFS1 EIUBFS2 EICONP EICONP1"
                 .split(" ")
                 .indexOf(problemId) >= 0
             ) {
               problem.extendTime(
                 "lab",
                 parseDateSimple(beginOfQuarter),
-                parseDateSimple("2024-11-01T23:59:59+07:00"),
+                parseDateSimple("2025-01-26T23:59:59+07:00"),
                 1
               );
             }
 
             if (
-              "EIPEOYMK EIPRF EIFBF EIFBF2 EIBIPARTITE EITRGROUP"
+              "EIFOLTRE EICONP3 EIPEOYMK EIPRF EIFBF EIFBF2"
                 .split(" ")
                 .indexOf(problemId) >= 0
             ) {
               problem.extendTime(
                 "lab",
                 parseDateSimple(beginOfQuarter),
-                parseDateSimple("2024-11-10T23:59:59+07:00"),
+                parseDateSimple("2025-02-09T23:59:59+07:00"),
                 1
               );
             }
 
-            if (
-              "EICHTTRE EITREHE1 EIUEASPOST EILOCAL2 EILOCAL2 EILOCAL2 EITREORD"
-                .split(" ")
-                .indexOf(problemId) >= 0
-            ) {
-              problem.extendTime(
-                "lab",
-                parseDateSimple(beginOfQuarter),
-                parseDateSimple("2024-11-23T23:59:59+07:00"),
-                1
-              );
-            }
+            // if (
+            //   "EICHTTRE EITREHE1 EIUEASPOST EILOCAL2 EILOCAL2 EILOCAL2 EITREORD"
+            //     .split(" ")
+            //     .indexOf(problemId) >= 0
+            // ) {
+            //   problem.extendTime(
+            //     "lab",
+            //     parseDateSimple(beginOfQuarter),
+            //     parseDateSimple("2024-11-23T23:59:59+07:00"),
+            //     1
+            //   );
+            // }
 
-            if (
-              "EIMAXHTR EIMULEMA EIUMLMK2 EIUSEFI2 EIUWBT EIGREENCITY EIMINDISTA EIMINSPAN"
-                .split(" ")
-                .indexOf(problemId) >= 0
-            ) {
-              problem.extendTime(
-                "lab",
-                parseDateSimple(beginOfQuarter),
-                parseDateSimple("2024-12-23T23:59:59+07:00"),
-                1
-              );
-            }
+            // if (
+            //   "EIMAXHTR EIMULEMA EIUMLMK2 EIUSEFI2 EIUWBT EIGREENCITY EIMINDISTA EIMINSPAN"
+            //     .split(" ")
+            //     .indexOf(problemId) >= 0
+            // ) {
+            //   problem.extendTime(
+            //     "lab",
+            //     parseDateSimple(beginOfQuarter),
+            //     parseDateSimple("2024-12-23T23:59:59+07:00"),
+            //     1
+            //   );
+            // }
 
             //problem.extendTime('lose', parseDateSimple('2024-05-29T14:00:00+07:00'), parseDateSimple('2024-05-29T15:59:59+07:00'), 1);
-            problem.extendTime(
-              "extent",
-              parseDateSimple(beginOfQuarter),
-              parseDateSimple("2024-12-23T23:59:59+07:00"),
-              0.8
-            );
+            // problem.extendTime(
+            //   "extent",
+            //   parseDateSimple(beginOfQuarter),
+            //   parseDateSimple("2024-12-23T23:59:59+07:00"),
+            //   0.8
+            // );
           });
         };
 
@@ -335,33 +335,33 @@
         // problems.addAll('2000-05-14T23:59:59+07:00', Array.from("EIUSEFI2 EIMULEMA EIUMLMK2".split(' ')));
         // problems.addAll('2000-05-14T23:59:59+07:00', Array.from("EIUEASPOST EITREORD EIKARY EIGREENCITY EILOCAL2 EILOCALA EIMAXHTR".split(' ')));
 
+        // problems.addAll(
+        //   "2000-05-14T23:59:59+07:00",
+        //   Array.from(
+        //     "EIMAXHTR EIMULEMA EIUMLMK2 EIUSEFI2 EIUWBT EIGREENCITY EIMINDISTA EIMINSPAN".split(
+        //       " "
+        //     )
+        //   )
+        // );
+        // problems.addAll(
+        //   "2000-05-14T23:59:59+07:00",
+        //   Array.from(
+        //     "EICHTTRE EITREHE1 EIUEASPOST EILOCAL2 EILOCAL2 EILOCAL2 EITREORD".split(
+        //       " "
+        //     )
+        //   )
+        // );
         problems.addAll(
           "2000-05-14T23:59:59+07:00",
           Array.from(
-            "EIMAXHTR EIMULEMA EIUMLMK2 EIUSEFI2 EIUWBT EIGREENCITY EIMINDISTA EIMINSPAN".split(
-              " "
-            )
-          )
-        );
-        problems.addAll(
-          "2000-05-14T23:59:59+07:00",
-          Array.from(
-            "EICHTTRE EITREHE1 EIUEASPOST EILOCAL2 EILOCAL2 EILOCAL2 EITREORD".split(
-              " "
-            )
-          )
-        );
-        problems.addAll(
-          "2000-05-14T23:59:59+07:00",
-          Array.from(
-            "EIPEOYMK EIPRF EIFBF EIFBF2 EIBIPARTITE EITRGROUP".split(" ")
+            "EIFOLTRE EICONP3 EIPEOYMK EIPRF EIFBF EIFBF2".split(" ")
           )
         );
         problems.addAll(
           "2000-05-12T14:00:00+07:00",
           Array.from(
             new Set(
-              "EIUDFS1 EIUDFS2 EIUBFS1 EIUBFS2 EICONP EICONP1 EIFOLTRE EICONP3".split(
+              "EIUDFS1 EIUDFS2 EIUBFS1 EIUBFS2 EICONP EICONP1".split(
                 " "
               )
             )

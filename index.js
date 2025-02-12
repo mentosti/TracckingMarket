@@ -59,8 +59,9 @@ const fs = require("fs");
 
       // DISTRICT
       for (const city of cities) {
+        let branchLengthCity = 0;
         await page.select(rules.chooseRegion.city, city.value);
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         let districts = await page.evaluate((rules) => {
           const districtSelectElement = document.querySelector(
@@ -76,8 +77,9 @@ const fs = require("fs");
         }, rules);
 
         for (const district of districts) {
+          let branchLengthDistrict = 0;
           await page.select(rules.chooseRegion.district, district.value);
-          await new Promise((resolve) => setTimeout(resolve, 2000));
+          await new Promise((resolve) => setTimeout(resolve, 1000));
 
           let wards = await page.evaluate((rules) => {
             const wardSelectElement = document.querySelector(
@@ -93,8 +95,9 @@ const fs = require("fs");
           }, rules);
 
           for (const ward of wards) {
+            let branchLengthWard = 0;
             await page.select(rules.chooseRegion.ward, ward.value);
-            await new Promise((resolve) => setTimeout(resolve, 2000));
+            await new Promise((resolve) => setTimeout(resolve, 1000));
 
             let branches = await page.evaluate((rules) => {
               const branchSelectElement = document.querySelector(
@@ -123,15 +126,20 @@ const fs = require("fs");
               branch = branchMap.get(text);
             }
 
-            ward.branches = branches;
+            branchLengthWard = branches.length;
+            branchLengthDistrict += branchLengthWard;
+            if (branchLengthWard > 0) ward.branches = branches;
+
+            await new Promise((resolve) => setTimeout(resolve, 1000));
           }
+          branchLengthCity += branchLengthDistrict;
+          if (branchLengthDistrict > 0) district.wards = wards;
 
-          district.wards = wards;
+          await new Promise((resolve) => setTimeout(resolve, 1000));
         }
-
-        city.districts = districts;
-
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        if (branchLengthCity > 0) city.districts = districts;
+        console.log(city);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       }
 
       // Extract data based on the site type
