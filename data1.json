@@ -1,0 +1,1596 @@
+[
+    {
+        "value": "24",
+        "text": "Tỉnh Bắc Giang",
+        "districts": [
+            {
+                "value": "213",
+                "text": "Thành phố Bắc Giang",
+                "wards": [
+                    {
+                        "value": "07207",
+                        "text": "Phường Ngô Quyền",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Bắc Giang"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "25",
+        "text": "Tỉnh Phú Thọ",
+        "districts": [
+            {
+                "value": "227",
+                "text": "Thành phố Việt Trì",
+                "wards": [
+                    {
+                        "value": "07900",
+                        "text": "Phường Gia Cẩm",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Việt Trì"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "26",
+        "text": "Tỉnh Vĩnh Phúc",
+        "districts": [
+            {
+                "value": "243",
+                "text": "Thành phố Vĩnh Yên",
+                "wards": [
+                    {
+                        "value": "08728",
+                        "text": "Phường Khai Quang",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Vĩnh Phúc"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "31",
+        "text": "Thành phố Hải Phòng",
+        "districts": [
+            {
+                "value": "304",
+                "text": "Quận Ngô Quyền",
+                "wards": [
+                    {
+                        "value": "11341",
+                        "text": "Phường Lạc Viên",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Hải Phòng"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "38",
+        "text": "Tỉnh Thanh Hóa",
+        "districts": [
+            {
+                "value": "380",
+                "text": "Thành phố Thanh Hóa",
+                "wards": [
+                    {
+                        "value": "14767",
+                        "text": "Phường Điện Biên",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Thanh Hóa"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "42",
+        "text": "Tỉnh Hà Tĩnh",
+        "districts": [
+            {
+                "value": "436",
+                "text": "Thành phố Hà Tĩnh",
+                "wards": [
+                    {
+                        "value": "18073",
+                        "text": "Phường Nam Hà",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Hà Tĩnh"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "44",
+        "text": "Tỉnh Quảng Bình",
+        "districts": [
+            {
+                "value": "450",
+                "text": "Thành Phố Đồng Hới",
+                "wards": [
+                    {
+                        "value": "18856",
+                        "text": "Phường Đồng Phú",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Quảng Bình"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "45",
+        "text": "Tỉnh Quảng Trị",
+        "districts": [
+            {
+                "value": "461",
+                "text": "Thành phố Đông Hà",
+                "wards": [
+                    {
+                        "value": "19333",
+                        "text": "Phường 1",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Đông Hà - Quảng Trị"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "46",
+        "text": "Tỉnh Thừa Thiên Huế",
+        "districts": [
+            {
+                "value": "474",
+                "text": "Thành phố Huế",
+                "wards": [
+                    {
+                        "value": "19768",
+                        "text": "Phường Đông Ba",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Huế"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "48",
+        "text": "Thành phố Đà Nẵng",
+        "districts": [
+            {
+                "value": "493",
+                "text": "Quận Sơn Trà",
+                "wards": [
+                    {
+                        "value": "20266",
+                        "text": "Phường Nại Hiên Đông",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opmart Sơn Trà - Đà Nẵng"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "491",
+                "text": "Quận Thanh Khê",
+                "wards": [
+                    {
+                        "value": "20207",
+                        "text": "Phường Thanh Khê Đông",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Đà Nẵng - Đà Nẵng"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "49",
+        "text": "Tỉnh Quảng Nam",
+        "districts": [
+            {
+                "value": "502",
+                "text": "Thành phố Tam Kỳ",
+                "wards": [
+                    {
+                        "value": "20338",
+                        "text": "Phường Phước Hòa",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Tam Kỳ - Quảng Nam"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "51",
+        "text": "Tỉnh Quảng Ngãi",
+        "districts": [
+            {
+                "value": "534",
+                "text": "Huyện Đức Phổ",
+                "wards": [
+                    {
+                        "value": "21460",
+                        "text": "Xã Phổ Ninh",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Đức Phổ - Quảng Ngãi"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "522",
+                "text": "Thành phố Quảng Ngãi",
+                "wards": [
+                    {
+                        "value": "21025",
+                        "text": "Phường Nguyễn Nghiêm",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Quảng Ngãi - Quảng Ngãi"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "52",
+        "text": "Tỉnh Bình Định",
+        "districts": [
+            {
+                "value": "540",
+                "text": "Thành phố Qui Nhơn",
+                "wards": [
+                    {
+                        "value": "21580",
+                        "text": "Phường Lý Thường Kiệt",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Quy Nhơn - Bình Định"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "549",
+                "text": "Thị xã An Nhơn",
+                "wards": [
+                    {
+                        "value": "21907",
+                        "text": "Phường Bình Định",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart An Nhơn"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "54",
+        "text": "Tỉnh Phú Yên",
+        "districts": [
+            {
+                "value": "555",
+                "text": "Thành phố Tuy Hoà",
+                "wards": [
+                    {
+                        "value": "22030",
+                        "text": "Phường 4",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Tuy Hòa - Phú Yên"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "56",
+        "text": "Tỉnh Khánh Hòa",
+        "districts": [
+            {
+                "value": "569",
+                "text": "Thành phố Cam Ranh",
+                "wards": [
+                    {
+                        "value": "22417",
+                        "text": "Phường Cam Lộc",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Cam Ranh, Khánh Hòa"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "568",
+                "text": "Thành phố Nha Trang",
+                "wards": [
+                    {
+                        "value": "22357",
+                        "text": "Phường Phước Hải",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Nha Trang - Khánh Hòa"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "58",
+        "text": "Tỉnh Ninh Thuận",
+        "districts": [
+            {
+                "value": "582",
+                "text": "Thành phố Phan Rang - Tháp Chàm",
+                "wards": [
+                    {
+                        "value": "22747",
+                        "text": "Phường Phủ Hà",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Thanh Hà - Phan Rang"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "60",
+        "text": "Tỉnh Bình Thuận",
+        "districts": [
+            {
+                "value": "595",
+                "text": "Huyện Tuy Phong",
+                "wards": [
+                    {
+                        "value": "22972",
+                        "text": "Thị trấn Phan Rí Cửa",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Phan Rí Cửa"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "593",
+                "text": "Thành phố Phan Thiết",
+                "wards": [
+                    {
+                        "value": "22939",
+                        "text": "Phường Bình Hưng",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Phan Thiết"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "594",
+                "text": "Thị xã La Gi",
+                "wards": [
+                    {
+                        "value": "23234",
+                        "text": "Phường Tân Thiện",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Lagi"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "62",
+        "text": "Tỉnh Kon Tum",
+        "districts": [
+            {
+                "value": "608",
+                "text": "Thành phố Kon Tum",
+                "wards": [
+                    {
+                        "value": "23287",
+                        "text": "Phường Quyết Thắng",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Kon Tum"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "64",
+        "text": "Tỉnh Gia Lai",
+        "districts": [
+            {
+                "value": "633",
+                "text": "Huyện Chư Sê",
+                "wards": [
+                    {
+                        "value": "23941",
+                        "text": "Thị trấn Chư Sê",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Chư Sê"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "622",
+                "text": "Thành phố Pleiku",
+                "wards": [
+                    {
+                        "value": "23572",
+                        "text": "Phường Hoa Lư",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Pleiku"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "66",
+        "text": "Tỉnh Đắk Lắk",
+        "districts": [
+            {
+                "value": "648",
+                "text": "Huyện Cư M'gar",
+                "wards": [
+                    {
+                        "value": "24259",
+                        "text": "Thị trấn Quảng Phú",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Cư M Gar"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "643",
+                "text": "Thành phố Buôn Ma Thuột",
+                "wards": [
+                    {
+                        "value": "24124",
+                        "text": "Phường Tân An",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Buôn Ma Thuột"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "644",
+                "text": "Thị Xã Buôn Hồ",
+                "wards": [
+                    {
+                        "value": "24308",
+                        "text": "Phường An Bình",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Buôn Hồ"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "67",
+        "text": "Tỉnh Đắk Nông",
+        "districts": [
+            {
+                "value": "660",
+                "text": "Thị xã Gia Nghĩa",
+                "wards": [
+                    {
+                        "value": "24612",
+                        "text": "Phường Nghĩa Thành",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Đắk Nông"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "68",
+        "text": "Tỉnh Lâm Đồng",
+        "districts": [
+            {
+                "value": "673",
+                "text": "Thành phố Bảo Lộc",
+                "wards": [
+                    {
+                        "value": "24820",
+                        "text": "Phường 2",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Bảo Lộc"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "70",
+        "text": "Tỉnh Bình Phước",
+        "districts": [
+            {
+                "value": "695",
+                "text": "Huyện Đồng Phú",
+                "wards": [
+                    {
+                        "value": "25363",
+                        "text": "Thị trấn Tân Phú",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Đồng Phú"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "689",
+                "text": "Thị xã Đồng Xoài",
+                "wards": [
+                    {
+                        "value": "25201",
+                        "text": "Phường Tân Bình",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Đồng Xoài"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "72",
+        "text": "Tỉnh Tây Ninh",
+        "districts": [
+            {
+                "value": "708",
+                "text": "Huyện Châu Thành",
+                "wards": [
+                    {
+                        "value": "25585",
+                        "text": "Thị trấn Châu Thành",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opmart Châu Thành - TN"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "707",
+                "text": "Huyện Dương Minh Châu",
+                "wards": [
+                    {
+                        "value": "25552",
+                        "text": "Thị trấn Dương Minh Châu",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Dương Minh Châu"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "710",
+                "text": "Huyện Gò Dầu",
+                "wards": [
+                    {
+                        "value": "25654",
+                        "text": "Thị trấn Gò Dầu",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Gò Dầu"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "25672",
+                        "text": "Xã Phước Đông",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opmart Phước Đông"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "705",
+                "text": "Huyện Tân Biên",
+                "wards": [
+                    {
+                        "value": "25486",
+                        "text": "Thị trấn Tân Biên",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Tân Biên"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "706",
+                "text": "Huyện Tân Châu",
+                "wards": [
+                    {
+                        "value": "25516",
+                        "text": "Thị trấn Tân Châu",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Tân Châu - Tây Ninh"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "712",
+                "text": "Huyện Trảng Bàng",
+                "wards": [
+                    {
+                        "value": "25708",
+                        "text": "Thị trấn Trảng Bàng",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Trảng Bàng"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "703",
+                "text": "Thành phố Tây Ninh",
+                "wards": [
+                    {
+                        "value": "25468",
+                        "text": "Phường 2",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opmart SCA Tây Ninh"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "25459",
+                        "text": "Phường 3",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Tây Ninh"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "74",
+        "text": "Tỉnh Bình Dương",
+        "districts": [
+            {
+                "value": "718",
+                "text": "Thủ Dầu Một",
+                "wards": [
+                    {
+                        "value": "25756",
+                        "text": "Phường Chánh Nghĩa",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Bình Dương"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "25750",
+                        "text": "Phường Phú Hòa",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opmart Bình Dương 2"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "75",
+        "text": "Tỉnh Đồng Nai",
+        "districts": [
+            {
+                "value": "731",
+                "text": "Thành phố Biên Hòa",
+                "wards": [
+                    {
+                        "value": "26014",
+                        "text": "Phường Tân Tiến",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Biên Hoà"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "77",
+        "text": "Tỉnh Bà Rịa - Vũng Tàu",
+        "districts": [
+            {
+                "value": "754",
+                "text": "Huyện Tân Thành",
+                "wards": [
+                    {
+                        "value": "26704",
+                        "text": "Thị trấn Phú Mỹ",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Tân Thành"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "748",
+                "text": "Thành phố Bà Rịa",
+                "wards": [
+                    {
+                        "value": "26560",
+                        "text": "Phường Phước Trung",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Bà Rịa"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "747",
+                "text": "Thành phố Vũng Tàu",
+                "wards": [
+                    {
+                        "value": "26524",
+                        "text": "Phường 7",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Vũng Tàu"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "value": "79",
+        "text": "Thành phố Hồ Chí Minh",
+        "districts": [
+            {
+                "value": "760",
+                "text": "01",
+                "wards": [
+                    {
+                        "value": "26758",
+                        "text": "Nguyễn Cư Trinh",
+                        "branches": [
+                            {
+                                "value": 6,
+                                "text": "Co.opmart Cống Quỳnh - Quận 1"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26749",
+                        "text": "Phạm Ngũ Lão",
+                        "branches": [
+                            {
+                                "value": 12,
+                                "text": "Co.op Food Nguyễn Thái Học Premium"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "770",
+                "text": "03",
+                "wards": [
+                    {
+                        "value": "27130",
+                        "text": "12",
+                        "branches": [
+                            {
+                                "value": 3,
+                                "text": "Co.opmart Nhiêu Lộc - Quận 3"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27139",
+                        "text": "06",
+                        "branches": [
+                            {
+                                "value": 6,
+                                "text": "Co.opmart Nguyễn Đình Chiểu - Quận 3"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27142",
+                        "text": "09",
+                        "branches": [
+                            {
+                                "value": 10,
+                                "text": "Co.op Food Kỳ Đồng"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "773",
+                "text": "04",
+                "wards": [
+                    {
+                        "value": "27283",
+                        "text": "04",
+                        "branches": [
+                            {
+                                "value": 7,
+                                "text": "Co.op Food Tôn Thất Thuyết"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "774",
+                "text": "05",
+                "wards": [
+                    {
+                        "value": "27304",
+                        "text": "09",
+                        "branches": [
+                            {
+                                "value": 3,
+                                "text": "Co.opmart Hùng Vương - Quận 5"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27319",
+                        "text": "15",
+                        "branches": [
+                            {
+                                "value": 10,
+                                "text": "Co.op Food The Garden Mall"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "775",
+                "text": "06",
+                "wards": [
+                    {
+                        "value": "27355",
+                        "text": "06",
+                        "branches": [
+                            {
+                                "value": 5,
+                                "text": "Co.opmart Hậu Giang - Quận 6"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27349",
+                        "text": "13",
+                        "branches": [
+                            {
+                                "value": 6,
+                                "text": "Co.opmart Phú Lâm - Quận 6"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "778",
+                "text": "07",
+                "wards": [
+                    {
+                        "value": "27493",
+                        "text": "Phú Mỹ",
+                        "branches": [
+                            {
+                                "value": 3,
+                                "text": "Co.opmart Huỳnh Tấn Phát - Quận 7"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27472",
+                        "text": "Tân Kiểng",
+                        "branches": [
+                            {
+                                "value": 6,
+                                "text": "Co.op Food Lâm Văn Bền 22"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27490",
+                        "text": "Tân Phong",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opXtra Tân Phong - Quận 7"
+                            },
+                            {
+                                "value": 4,
+                                "text": "Finelife supermarket Urban Hill"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27487",
+                        "text": "Tân Phú",
+                        "branches": [
+                            {
+                                "value": 5,
+                                "text": "Finelife Riviera Point"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "776",
+                "text": "08",
+                "wards": [
+                    {
+                        "value": "27418",
+                        "text": "05",
+                        "branches": [
+                            {
+                                "value": 3,
+                                "text": "Co.opXtra Tạ Quang Bửu - Quận 8"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27424",
+                        "text": "06",
+                        "branches": [
+                            {
+                                "value": 7,
+                                "text": "Co.opmart Phạm Thế Hiển - Quận 8"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27412",
+                        "text": "13",
+                        "branches": [
+                            {
+                                "value": 3,
+                                "text": "Co.opmart Tuy Lý Vương - Quận 8"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "771",
+                "text": "10",
+                "wards": [
+                    {
+                        "value": "27196",
+                        "text": "07",
+                        "branches": [
+                            {
+                                "value": 9,
+                                "text": "Co.opmart Lý Thường Kiệt - Quận 10"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27172",
+                        "text": "12",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opXtra Vạn Hạnh - Quận 10"
+                            },
+                            {
+                                "value": 10,
+                                "text": "Co.opmart SCA Cao Thắng - Quận 10"
+                            },
+                            {
+                                "value": 12,
+                                "text": "Finelife Foodstore Hà Đô"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "772",
+                "text": "11",
+                "wards": [
+                    {
+                        "value": "27208",
+                        "text": "15",
+                        "branches": [
+                            {
+                                "value": 5,
+                                "text": "Co.opmart Phú Thọ - Quận 11"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "761",
+                "text": "12",
+                "wards": [
+                    {
+                        "value": "26770",
+                        "text": "Hiệp Thành",
+                        "branches": [
+                            {
+                                "value": 5,
+                                "text": "Co.opmart Hiệp Thành - Quận 12"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26791",
+                        "text": "Tân Thới Nhất",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opmart Phan Văn Hớn - Quận 12"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26785",
+                        "text": "Trung Mỹ Tây",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Nguyễn Ảnh Thủ - Quận 12"
+                            },
+                            {
+                                "value": 6,
+                                "text": "Co.opmart Tô Ký - Quận 12"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "785",
+                "text": "Bình Chánh",
+                "wards": [
+                    {
+                        "value": "27619",
+                        "text": "Bình Hưng",
+                        "branches": [
+                            {
+                                "value": 7,
+                                "text": "Co.op Food Quốc Lộ 50"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27604",
+                        "text": "Vĩnh Lộc B",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opmart Vĩnh Lộc B - Bình Chánh"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "777",
+                "text": "Bình Tân",
+                "wards": [
+                    {
+                        "value": "27436",
+                        "text": "Bình Hưng Hòa",
+                        "branches": [
+                            {
+                                "value": 6,
+                                "text": "Co.op Food Gia Phú"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27445",
+                        "text": "Bình Trị Đông",
+                        "branches": [
+                            {
+                                "value": 4,
+                                "text": "Co.opmart Bình Tân 2 - Bình Tân"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27451",
+                        "text": "Bình Trị Đông B",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Bình Tân - Bình Tân"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "765",
+                "text": "Bình Thạnh",
+                "wards": [
+                    {
+                        "value": "26917",
+                        "text": "12",
+                        "branches": [
+                            {
+                                "value": 8,
+                                "text": "Co.opmart Chu Văn An - Bình Thạnh"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26920",
+                        "text": "25",
+                        "branches": [
+                            {
+                                "value": 7,
+                                "text": "Co.opmart Văn Thánh - Bình Thạnh"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "787",
+                "text": "Cần Giờ",
+                "wards": [
+                    {
+                        "value": "27664",
+                        "text": "Thị trấn Cần Thạnh",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Cần Giờ - Cần Giờ"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "783",
+                "text": "Củ Chi",
+                "wards": [
+                    {
+                        "value": "27556",
+                        "text": "Xã Tân Thông Hội",
+                        "branches": [
+                            {
+                                "value": 1,
+                                "text": "Co.opmart Củ Chi - Củ Chi"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "764",
+                "text": "Gò Vấp",
+                "wards": [
+                    {
+                        "value": "26890",
+                        "text": "07",
+                        "branches": [
+                            {
+                                "value": 4,
+                                "text": "Co.opmart Phan Văn Trị - Gò Vấp"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26899",
+                        "text": "11",
+                        "branches": [
+                            {
+                                "value": 5,
+                                "text": "Co.opmart Foodcosa - Gò Vấp"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "784",
+                "text": "Hóc Môn",
+                "wards": [
+                    {
+                        "value": "27562",
+                        "text": "Xã Tân Hiệp",
+                        "branches": [
+                            {
+                                "value": 3,
+                                "text": "Co.opmart Đỗ Văn Dậy - Hóc Môn"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27574",
+                        "text": "Xã Thới Tam Thôn",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opmart Hóc Môn - Hóc Môn"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "786",
+                "text": "Nhà Bè",
+                "wards": [
+                    {
+                        "value": "27655",
+                        "text": "Xã Phú Xuân",
+                        "branches": [
+                            {
+                                "value": 3,
+                                "text": "Co.opmart Nguyễn Bình - Nhà Bè"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "768",
+                "text": "Phú Nhuận",
+                "wards": [
+                    {
+                        "value": "27052",
+                        "text": "07",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opmart Rạch Miễu - Phú Nhuận"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27049",
+                        "text": "09",
+                        "branches": [
+                            {
+                                "value": 5,
+                                "text": "Co.opmart Nguyễn Kiệm - Phú Nhuận"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "766",
+                "text": "Tân Bình",
+                "wards": [
+                    {
+                        "value": "26965",
+                        "text": "02",
+                        "branches": [
+                            {
+                                "value": 11,
+                                "text": "Co.op Food Bạch Đằng"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26968",
+                        "text": "04",
+                        "branches": [
+                            {
+                                "value": 8,
+                                "text": "Co.opmart SCA Hoàng Văn Thụ - Tân Bình"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "767",
+                "text": "Tân Phú",
+                "wards": [
+                    {
+                        "value": "27037",
+                        "text": "Hiệp Tân",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opmart Hòa Bình - Tân Phú"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27019",
+                        "text": "Tân Qúy",
+                        "branches": [
+                            {
+                                "value": 5,
+                                "text": "Co.op Food Tân Hương 262"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27022",
+                        "text": "Tân Thành",
+                        "branches": [
+                            {
+                                "value": 5,
+                                "text": "Co.op Food Tân Sơn Nhì 387"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "27013",
+                        "text": "Tây Thạnh",
+                        "branches": [
+                            {
+                                "value": 4,
+                                "text": "Co.opmart Thắng Lợi - Tân Phú"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "value": "769",
+                "text": "TP. Thủ Đức",
+                "wards": [
+                    {
+                        "value": "27091",
+                        "text": "Phường An Phú",
+                        "branches": [
+                            {
+                                "value": 9,
+                                "text": "Finelife FOODSTORE LUMIERE AN PHÚ"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26797",
+                        "text": "Phường Bình Chiểu",
+                        "branches": [
+                            {
+                                "value": 9,
+                                "text": "Co.op Food Lê Thị Hoa 240"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26812",
+                        "text": "Phường Hiệp Bình Chánh",
+                        "branches": [
+                            {
+                                "value": 3,
+                                "text": "Co.opXtra Phạm Văn Đồng - Thủ Đức"
+                            },
+                            {
+                                "value": 6,
+                                "text": "Co.opmart Bình Triệu - Thủ Đức"
+                            },
+                            {
+                                "value": 9,
+                                "text": "Co.op Food Hiệp Bình"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26839",
+                        "text": "Phường Hiệp Phú",
+                        "branches": [
+                            {
+                                "value": 5,
+                                "text": "Co.opmart Xa Lộ Hà Nội - TP.Thủ Đức"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26800",
+                        "text": "Phường Linh Trung",
+                        "branches": [
+                            {
+                                "value": 2,
+                                "text": "Co.opXtra Linh Trung - Thủ Đức"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26830",
+                        "text": "Phường Long Bình",
+                        "branches": [
+                            {
+                                "value": 4,
+                                "text": "Co.opXtra Long Bình - Thủ Đức"
+                            }
+                        ]
+                    },
+                    {
+                        "value": "26803",
+                        "text": "Phường Tam Bình",
+                        "branches": [
+                            {
+                                "value": 8,
+                                "text": "Co.opmart Tam Bình - Thủ Đức"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
