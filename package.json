@@ -1,5 +1,7 @@
 {
-	"dependencies": {
-		"puppeteer": "^24.1.1"
-	}
+  "dependencies": {
+    "p-limit": "^6.2.0",
+    "puppeteer": "^24.1.1"
+  },
+  "type": "module"
 }

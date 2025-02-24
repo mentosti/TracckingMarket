@@ -1,0 +1,115 @@
+try {
+      await page.goto(site.url, {
+        waitUntil: "domcontentloaded",
+        timeout: 60000,
+      });
+      // const data = [];
+      const branchMap = new Map();
+      const rules = scrapingRules[site.type];
+      // CHOOSE REGION
+      // CITY
+      let cities = await page.evaluate((rules) => {
+        const citySelectElement = document.querySelector(
+          rules.chooseRegion.city
+        );
+
+        return Array.from(citySelectElement.options).map((option) => ({
+          value: option.value,
+          text: option.text.trim(),
+        }));
+      }, rules);
+
+      // DISTRICT
+      for (const city of cities) {
+        let branchLengthCity = 0;
+        await page.select(rules.chooseRegion.city, city.value);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        let districts = await page.evaluate((rules) => {
+          const districtSelectElement = document.querySelector(
+            rules.chooseRegion.district
+          );
+
+          return Array.from(districtSelectElement.options)
+            .filter((option) => option.value !== "0")
+            .map((option) => ({
+              value: option.value,
+              text: option.text.trim(),
+            }));
+        }, rules);
+
+        for (const district of districts) {
+          let branchLengthDistrict = 0;
+          await page.select(rules.chooseRegion.district, district.value);
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+
+          let wards = await page.evaluate((rules) => {
+            const wardSelectElement = document.querySelector(
+              rules.chooseRegion.ward
+            );
+
+            return Array.from(wardSelectElement.options)
+              .filter((option) => option.value !== "0")
+              .map((option) => ({
+                value: option.value,
+                text: option.text.trim(),
+              }));
+          }, rules);
+
+          for (const ward of wards) {
+            let branchLengthWard = 0;
+            await page.select(rules.chooseRegion.ward, ward.value);
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+
+            let branches = await page.evaluate((rules) => {
+              const branchSelectElement = document.querySelector(
+                rules.chooseRegion.branch
+              );
+
+              return Array.from(branchSelectElement.options)
+                .filter((option) => option.value !== "0")
+                .map((option) => ({
+                  value: option.value,
+                  text: option.text.trim(),
+                }));
+            }, rules);
+
+            for (let branch of branches) {
+              let { text, value } = branch;
+              if (!branchMap.has(text)) {
+                branchMap.set(text, {
+                  value: value,
+                  text: text,
+                  locations: [ward.text],
+                });
+              } else {
+                branchMap.get(text).locations.push(ward.text);
+              }
+              branch = branchMap.get(text);
+            }
+
+            branchLengthWard = branches.length;
+            branchLengthDistrict += branchLengthWard;
+            if (branchLengthWard > 0) ward.branches = branches;
+
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+          }
+          branchLengthCity += branchLengthDistrict;
+          if (branchLengthDistrict > 0) district.wards = wards;
+
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
+        if (branchLengthCity > 0) city.districts = districts;
+        console.log(city);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+
+      // Extract data based on the site type
+      // let data = await scrapePage(page, scrapingRules[site.type]);
+      // results.push({ url: site.url, ...data });
+      // console.log(cities);
+      fs.writeFileSync("data.json", JSON.stringify(cities), "utf8");
+    } catch (error) {
+      console.error(`Error scraping ${site.url}:`, error);
+      // results.push({ url: site.url, error: error.message });
+    }

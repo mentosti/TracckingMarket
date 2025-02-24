@@ -1,7 +1,79 @@
-const puppeteer = require("puppeteer");
-const fs = require("fs");
+import puppeteer from "puppeteer";
+import fs from "fs";
+import pLimit from "p-limit";
+import { timeout } from "puppeteer";
+
+async function scrapeBranch(browser, city, district, ward, branch, rules, url) {
+  const page = await browser.newPage();
+  console.log(url);
+  console.log(
+    `Scraping: ${city.text}, ${district.text}, ${ward.text}, ${branch.text}`
+  );
+
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 100000 });
+  await page.setViewport({ width: 1280, height: 720 });
+  // const chooseStore = await page.evaluate(() => {
+  //   const store = document.querySelector("#chooseStore_Modal");
+  //   return store ? window.getComputedStyle(store).display : "none";
+  // });
+  // if (chooseStore == "none" ) {
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+  await page.click("ul.signin-link li:first-child a:first-child");
+  // }
+  await page.waitForSelector(rules.chooseRegion.city, { visible: true });
+
+  // choose city
+  await page.select(rules.chooseRegion.city, city.value);
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  await page.select(rules.chooseRegion.district, district.value);
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  await page.select(rules.chooseRegion.ward, ward.value);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // await page.evaluate(
+  //   (rules, index) => {
+  //     document.querySelector(rules.chooseRegion.branch).selectedIndex = index;
+  //   },
+  //   rules,
+  //   branch.value
+  // );
+  // await page.waitForTimeout(500);
+  await page.click("#modal-body div:nth-child(4) select");
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  for (let index = 0; index < branch.value; index++) {
+    await page.keyboard.press("ArrowDown");
+    await new Promise((resolve) => setTimeout(resolve, 500));
+  }
+  await page.keyboard.press("Enter");
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  await page.click(rules.chooseRegion.submit);
+
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+  // await page.waitForSelector(".products-list", { visible: true });
+  await page.waitForSelector(".price-new", { visible: true, timeout: 100000 });
+  // await page.waitForNavigation({ waitUntil: "networkidle2" });
+
+  var items = await page.evaluate(() => {
+    var itemsEle = document.querySelectorAll(".product-item-container");
+    var items = [];
+    for (const itemEle of itemsEle) {
+      var itemPrice = itemEle.querySelector(".price-new").textContent.trim();
+      var itemName = itemEle.querySelector("h4 > a").textContent.trim();
+
+      items.push({ itemPrice, itemName });
+    }
+    return items;
+  });
+  console.log(items);
+
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await page.close();
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+}
 
 (async () => {
+  const limit = pLimit(1);
+
   const websites = [
     {
       url: "https://cooponline.vn/groups/bo-va-thit-cac-loai/",
@@ -28,133 +100,53 @@ const fs = require("fs");
     },
   };
 
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({
+    headless: false,
+    args: [
+      "--use-gl=desktop", // Enable GPU acceleration
+      "--disk-cache-dir=/tmp/cache", // Enable disk caching
+      "--start-maximized", // Open window maximized
+    ],
+  });
 
   let results = [];
 
-  for (let site of websites) {
-    const page = await browser.newPage();
-    console.log(`Scraping: ${site.url}`);
+  const data = fs.readFileSync("data1.json", "utf8");
+  const regions = JSON.parse(data);
+  const type = "coop";
+  const tasks = [];
 
-    try {
-      await page.goto(site.url, {
-        waitUntil: "domcontentloaded",
-        timeout: 60000,
-      });
-      // const data = [];
-      const branchMap = new Map();
-      const rules = scrapingRules[site.type];
-      // CHOOSE REGION
-      // CITY
-      let cities = await page.evaluate((rules) => {
-        const citySelectElement = document.querySelector(
-          rules.chooseRegion.city
-        );
-
-        return Array.from(citySelectElement.options).map((option) => ({
-          value: option.value,
-          text: option.text.trim(),
-        }));
-      }, rules);
-
-      // DISTRICT
-      for (const city of cities) {
-        let branchLengthCity = 0;
-        await page.select(rules.chooseRegion.city, city.value);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        let districts = await page.evaluate((rules) => {
-          const districtSelectElement = document.querySelector(
-            rules.chooseRegion.district
+  for (const city of regions) {
+    for (const district of city.districts) {
+      for (const ward of district.wards) {
+        for (const branch of ward.branches) {
+          // tasks.push(
+          //   limit(() =>
+          //     scrapeBranch(
+          //       browser,
+          //       city,
+          //       district,
+          //       ward,
+          //       branch,
+          //       scrapingRules[type],
+          //       websites[0].url
+          //     )
+          //   )
+          // );
+          await scrapeBranch(
+            browser,
+            city,
+            district,
+            ward,
+            branch,
+            scrapingRules[type],
+            websites[0].url
           );
-
-          return Array.from(districtSelectElement.options)
-            .filter((option) => option.value !== "0")
-            .map((option) => ({
-              value: option.value,
-              text: option.text.trim(),
-            }));
-        }, rules);
-
-        for (const district of districts) {
-          let branchLengthDistrict = 0;
-          await page.select(rules.chooseRegion.district, district.value);
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-
-          let wards = await page.evaluate((rules) => {
-            const wardSelectElement = document.querySelector(
-              rules.chooseRegion.ward
-            );
-
-            return Array.from(wardSelectElement.options)
-              .filter((option) => option.value !== "0")
-              .map((option) => ({
-                value: option.value,
-                text: option.text.trim(),
-              }));
-          }, rules);
-
-          for (const ward of wards) {
-            let branchLengthWard = 0;
-            await page.select(rules.chooseRegion.ward, ward.value);
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-
-            let branches = await page.evaluate((rules) => {
-              const branchSelectElement = document.querySelector(
-                rules.chooseRegion.branch
-              );
-
-              return Array.from(branchSelectElement.options)
-                .filter((option) => option.value !== "0")
-                .map((option) => ({
-                  value: option.value,
-                  text: option.text.trim(),
-                }));
-            }, rules);
-
-            for (let branch of branches) {
-              let { text, value } = branch;
-              if (!branchMap.has(text)) {
-                branchMap.set(text, {
-                  value: value,
-                  text: text,
-                  locations: [ward.text],
-                });
-              } else {
-                branchMap.get(text).locations.push(ward.text);
-              }
-              branch = branchMap.get(text);
-            }
-
-            branchLengthWard = branches.length;
-            branchLengthDistrict += branchLengthWard;
-            if (branchLengthWard > 0) ward.branches = branches;
-
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-          }
-          branchLengthCity += branchLengthDistrict;
-          if (branchLengthDistrict > 0) district.wards = wards;
-
-          await new Promise((resolve) => setTimeout(resolve, 1000));
         }
-        if (branchLengthCity > 0) city.districts = districts;
-        console.log(city);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
       }
-
-      // Extract data based on the site type
-      // let data = await scrapePage(page, scrapingRules[site.type]);
-      // results.push({ url: site.url, ...data });
-      // console.log(cities);
-      fs.writeFileSync("data.json", JSON.stringify(cities), "utf8");
-    } catch (error) {
-      console.error(`Error scraping ${site.url}:`, error);
-      // results.push({ url: site.url, error: error.message });
     }
-
-    await page.close();
   }
-
+  // await Promise.all(tasks);
   await browser.close();
 
   console.log("Scraping completed:", results);
