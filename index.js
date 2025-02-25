@@ -1,7 +1,6 @@
 import puppeteer from "puppeteer";
 import fs from "fs";
 import pLimit from "p-limit";
-import { timeout } from "puppeteer";
 
 async function scrapeBranch(browser, city, district, ward, branch, rules, url) {
   const page = await browser.newPage();
@@ -12,31 +11,18 @@ async function scrapeBranch(browser, city, district, ward, branch, rules, url) {
 
   await page.goto(url, { waitUntil: "domcontentloaded", timeout: 100000 });
   await page.setViewport({ width: 1280, height: 720 });
-  // const chooseStore = await page.evaluate(() => {
-  //   const store = document.querySelector("#chooseStore_Modal");
-  //   return store ? window.getComputedStyle(store).display : "none";
-  // });
-  // if (chooseStore == "none" ) {
+
+  // CHOOSE REGION
   await new Promise((resolve) => setTimeout(resolve, 1500));
   await page.click("ul.signin-link li:first-child a:first-child");
-  // }
   await page.waitForSelector(rules.chooseRegion.city, { visible: true });
 
-  // choose city
   await page.select(rules.chooseRegion.city, city.value);
   await new Promise((resolve) => setTimeout(resolve, 500));
   await page.select(rules.chooseRegion.district, district.value);
   await new Promise((resolve) => setTimeout(resolve, 500));
   await page.select(rules.chooseRegion.ward, ward.value);
   await new Promise((resolve) => setTimeout(resolve, 1000));
-  // await page.evaluate(
-  //   (rules, index) => {
-  //     document.querySelector(rules.chooseRegion.branch).selectedIndex = index;
-  //   },
-  //   rules,
-  //   branch.value
-  // );
-  // await page.waitForTimeout(500);
   await page.click("#modal-body div:nth-child(4) select");
   await new Promise((resolve) => setTimeout(resolve, 1000));
   for (let index = 0; index < branch.value; index++) {
@@ -50,8 +36,18 @@ async function scrapeBranch(browser, city, district, ward, branch, rules, url) {
 
   await new Promise((resolve) => setTimeout(resolve, 1500));
   // await page.waitForSelector(".products-list", { visible: true });
-  await page.waitForSelector(".price-new", { visible: true, timeout: 100000 });
-  // await page.waitForNavigation({ waitUntil: "networkidle2" });
+  try {
+    await page.waitForSelector(".price-new", {
+      visible: true,
+      timeout: 100000,
+    });
+  } catch (ex) {
+    // timeout due to network or no item
+    await page.close();
+    return;
+  }
+
+  // CRAWL DATA
 
   var items = await page.evaluate(() => {
     var itemsEle = document.querySelectorAll(".product-item-container");
@@ -69,6 +65,19 @@ async function scrapeBranch(browser, city, district, ward, branch, rules, url) {
   await new Promise((resolve) => setTimeout(resolve, 2000));
   await page.close();
   await new Promise((resolve) => setTimeout(resolve, 2000));
+}
+
+function extractUrls(data, site) {
+  const brand = data[site];
+  const urls = [];
+  for (const itemType in brand) {
+    for (const itemType1 in itemType) {
+      for (const { url, itemType2 } of itemType1) {
+        urls.push({ itemType1, itemType2, url });
+      }
+    }
+  }
+  return urls;
 }
 
 (async () => {
@@ -103,9 +112,9 @@ async function scrapeBranch(browser, city, district, ward, branch, rules, url) {
   const browser = await puppeteer.launch({
     headless: false,
     args: [
-      "--use-gl=desktop", // Enable GPU acceleration
-      "--disk-cache-dir=/tmp/cache", // Enable disk caching
-      "--start-maximized", // Open window maximized
+      "--use-gl=desktop",
+      "--disk-cache-dir=/tmp/cache",
+      "--start-maximized",
     ],
   });
 
@@ -114,6 +123,9 @@ async function scrapeBranch(browser, city, district, ward, branch, rules, url) {
   const data = fs.readFileSync("data1.json", "utf8");
   const regions = JSON.parse(data);
   const type = "coop";
+
+  const itemData = fs.readFileSync("items.json", "utf8");
+  const items = JSON.parse(itemData);
   const tasks = [];
 
   for (const city of regions) {
